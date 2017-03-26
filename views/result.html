@@ -1,0 +1,108 @@
+<!-- result.html -->
+<!-- This file is used to display the results of flight search -->
+<!doctype html>
+<html>
+
+    <head>
+        <title>Flight Search</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+				<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript">
+				  $(document).ready(function() {
+				    $("#departureDate").datepicker({ dateFormat: 'yy-mm-dd' });
+				    $("#returnDate").datepicker({ dateFormat: 'yy-mm-dd' });
+				  });
+			  </script>
+			 
+			  <!-- Latest compiled and minified CSS -->
+				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+				<!-- Optional theme -->
+				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+				<!-- Latest compiled and minified JavaScript -->
+				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+    	<div class="container">
+
+    		<div class="row">
+    			<h1>Flight Search</h1>
+    		</div>
+
+    		<br />
+
+    		<div class="row">
+		    	<form id="form" action="/search" method="post">
+		    		<div class="row">
+			    		<div class="col-md-3">
+			    			<input type="text" class="form-control" name="departureAirport" placeholder="Departure Airport">
+						 	</div>
+							<div class="col-md-3">
+			    			<input type="text" class="form-control" name="destinationAirport" placeholder="Destination Airport">
+						 	</div>
+						 	<div class="col-md-3">
+			    			<input type="text" class="form-control" name="departureDate" placeholder="Departure Date">
+						 	</div>
+						 	<div class="col-md-3">
+			    			<input type="text" class="form-control" name="returnDate" placeholder="Return Date">
+						 	</div>
+		    		</div> 
+		    		
+		    		<br />
+
+		    		<div class="row">
+		    			<div class="col-md-12">
+					 			<button type="submit" class="btn btn-primary" name="searchButton">Search Flights</button>
+					 		</div>
+		    		</div>
+					</form>					
+				</div>
+
+				<br />
+
+				<div class="row">
+					<div class="col-md-6">
+		        {{ with .flightData }}
+						    {{ range .TripOption }}
+						        <table class="table table-condensed">
+							        <tr>
+								        <th>Flight</th>
+								        <th>Leaving</th>
+								        <th>&nbsp;</th>
+								        <th>Arriving</th>
+								        <th>Duration</th>
+								      </tr>
+								      {{ range .Slice }}
+								        	{{ range .Segment }}
+								        	<tr>
+								        		<td>{{ .Flight.Carrier }} {{ .Flight.Number }}</td>
+								        		{{ range .Leg }}
+									          	<td>{{ .Origin }} - {{ .DepartureTime }}</td>
+								        			<td>--></td>
+								        			<td>{{ .Destination }} - {{ .ArrivalTime }}</td>
+								        			<td>{{ .DurationString }}</td>
+								        		{{ end }} 
+								        	</tr>
+								       		{{ end }} 
+								      {{ end }}
+								      <tr>
+								      	<td colspan="3"></td>
+								      	<td>Fare Total:</td>
+								      	<td>{{ .SaleTotal }}</td>
+								      </tr>
+						        </table>
+						       <br />
+						    {{ end }}
+						{{ end }}
+					</div>
+	    	</div>
+		  </div>	
+    </body>
+</html>
