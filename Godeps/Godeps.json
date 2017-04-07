@@ -1,5 +1,5 @@
 {
-	"ImportPath": "gotester",
+	"ImportPath": "flightchecker",
 	"GoVersion": "go1.6.1",
 	"Deps": []
 }
