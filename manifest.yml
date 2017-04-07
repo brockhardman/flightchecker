@@ -2,7 +2,7 @@ applications:
 - path: .
   memory: 128M
   instances: 1
-  domain: ng.bluemix.net
+  domain: mybluemix.net
   name: flightchecker
   host: flightchecker
   disk_quota: 1024M
