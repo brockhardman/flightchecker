@@ -2,7 +2,7 @@
 package main
 
 import (
-    "github.com/astaxie/beego"
+    "http://github.com/astaxie/beego"
     "bytes"
     "net/http"
     "io/ioutil"
