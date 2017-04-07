@@ -1,1 +1,1 @@
-web: gotester
+web: flightchecker
