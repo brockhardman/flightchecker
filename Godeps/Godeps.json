@@ -1,6 +1,6 @@
 {
 	"ImportPath": "flightchecker",
-	"GoVersion": "go1.7",
+	"GoVersion": "go1.6.1",
 	"GodepVersion": "v74",
 	"Deps": []
 }
