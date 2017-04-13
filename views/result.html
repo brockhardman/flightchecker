@@ -12,12 +12,6 @@
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 				<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-        <script type="text/javascript">
-				  $(document).ready(function() {
-				    $("#departureDate").datepicker({ dateFormat: 'yy-mm-dd' });
-				    $("#returnDate").datepicker({ dateFormat: 'yy-mm-dd' });
-				  });
-			  </script>
 			 
 			  <!-- Latest compiled and minified CSS -->
 				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -42,16 +36,16 @@
 		    	<form id="form" action="/search" method="post">
 		    		<div class="row">
 			    		<div class="col-md-3">
-			    			<input type="text" class="form-control" name="departureAirport" placeholder="Departure Airport">
+			    			<input type="text" id="departureAirport" name="departureAirport" placeholder="Departure Airport">
 						 	</div>
 							<div class="col-md-3">
-			    			<input type="text" class="form-control" name="destinationAirport" placeholder="Destination Airport">
+			    			<input type="text" id="destinationAirport" name="destinationAirport" placeholder="Destination Airport">
 						 	</div>
 						 	<div class="col-md-3">
-			    			<input type="text" class="form-control" name="departureDate" placeholder="Departure Date">
+			    			<input type="text" id="departureDate" name="departureDate" placeholder="Departure Date">
 						 	</div>
 						 	<div class="col-md-3">
-			    			<input type="text" class="form-control" name="returnDate" placeholder="Return Date">
+			    			<input type="text" id="returnDate" name="returnDate" placeholder="Return Date">
 						 	</div>
 		    		</div> 
 		    		
@@ -101,6 +95,18 @@
 						    {{ end }}
 						{{ end }}
 	    	</div>
-		  </div>	
+		  </div>
+
+		  <script type="text/javascript">
+			  $(document).ready(function() {
+			    $("#departureDate").datepicker({ dateFormat: 'yy-mm-dd' });
+			    $("#returnDate").datepicker({ dateFormat: 'yy-mm-dd' });
+			    $("#departureAirport").addClass('form-control');
+			    $("#destinationAirport").addClass('form-control');
+			    $("#departureDate").addClass('form-control');
+			    $("#returnDate").addClass('form-control');
+			  });
+		  </script>	
+
     </body>
 </html>
